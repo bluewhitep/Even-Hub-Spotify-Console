@@ -1,0 +1,34 @@
+{
+  "name": "even-hub-spotify-console",
+  "private": true,
+  "license": "MPL-2.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1 --port 5173",
+    "dev:simulator": "node ./scripts/start-simulator.mjs",
+    "test": "npm run test:local",
+    "build": "vite build && node ./scripts/postbuild-evenhub-pack-compat.mjs",
+    "build:device": "node ./scripts/build-device.mjs",
+    "pack:ehpk": "node ./scripts/pack-evenhub.mjs",
+    "test:local": "node --test ../tests/*.test.mjs",
+    "host": "npm run build:device && node ../server/local-server.mjs",
+    "host:device": "npm run host",
+    "host:server": "node ../server/local-server.mjs",
+    "self-host:qr": "node ./scripts/generate-self-host-qr.mjs",
+    "self-host:start": "../scripts/start-self-host.sh",
+    "self-host:docker": "../scripts/start-self-host-docker.sh",
+    "self-host:tailscale": "../scripts/start-tailscale-proxy.sh",
+    "self-host:doctor": "../scripts/deploy-doctor.sh"
+  },
+  "dependencies": {
+    "@evenrealities/even_hub_sdk": "0.0.9"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.3",
+    "vite": "^7.3.6"
+  },
+  "overrides": {
+    "esbuild": "0.28.1",
+    "postcss": "8.5.10"
+  }
+}
