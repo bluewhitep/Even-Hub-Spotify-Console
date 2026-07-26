@@ -2,7 +2,7 @@
   "package_id": "com.bluewhites.evenhubspotifyconsole",
   "edition": "202601",
   "name": "Spotify Console",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "min_app_version": "0.1.0",
   "min_sdk_version": "0.0.9",
   "tagline": "Control Spotify console for Even Hub and glasses.",

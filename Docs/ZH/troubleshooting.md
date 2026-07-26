@@ -164,7 +164,7 @@ Runtime config 和 login state 不会在所有浏览器容器中通用共享。
 
 关键字段：
 
-- `Version`（`<app-version>_<6位hex hash>`，例如 `0.3.0_ab12cd`）
+- `Version`（`<app-version>_<6位hex hash>`，例如 `0.3.1_ab12cd`）
 - `Connection`
 - `Client ID`
 - `Runtime`

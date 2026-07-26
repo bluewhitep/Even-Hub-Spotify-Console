@@ -1,6 +1,6 @@
 # Even Hub Spotify Console 中文文档
 
-[![App Version](https://img.shields.io/badge/app-0.3.0-blue)](../../app.json) [![Even Hub SDK](https://img.shields.io/badge/Even%20Hub%20SDK-0.0.9-7c3aed)](../../app/package.json) [![Docs](https://img.shields.io/badge/docs-ZH%20%7C%20EN%20%7C%20JP-0f766e)](./README.md) [![Simulator](https://img.shields.io/badge/mode-simulator-2563eb)](./simulator.md) [![Self Host](https://img.shields.io/badge/mode-self--host-16a34a)](./deployment.md) [![License: MPL-2.0](https://img.shields.io/badge/license-MPL--2.0-orange)](../../LICENSE)
+[![App Version](https://img.shields.io/badge/app-0.3.1-blue)](../../app.json) [![Even Hub SDK](https://img.shields.io/badge/Even%20Hub%20SDK-0.0.9-7c3aed)](../../app/package.json) [![Docs](https://img.shields.io/badge/docs-ZH%20%7C%20EN%20%7C%20JP-0f766e)](./README.md) [![Simulator](https://img.shields.io/badge/mode-simulator-2563eb)](./simulator.md) [![Self Host](https://img.shields.io/badge/mode-self--host-16a34a)](./deployment.md) [![License: MPL-2.0](https://img.shields.io/badge/license-MPL--2.0-orange)](../../LICENSE)
 
 [中文](./README.md) | [English](../EN/README.md) | [日本語](../JP/README.md) | [项目首页](../../README.md)
 
