@@ -229,7 +229,7 @@ evenhub init
   "package_id": "com.example.g2demo",
   "edition": "202601",
   "name": "G2 Demo",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "min_app_version": "0.1.0",
   "tagline": "A short description of the app",
   "description": "A relatively long description of the app",

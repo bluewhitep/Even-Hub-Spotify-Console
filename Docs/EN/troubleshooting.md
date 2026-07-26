@@ -164,7 +164,7 @@ If QR viewer page is blank:
 
 Key fields:
 
-- `Version` (`<app-version>_<6-char hex hash>`, for example `0.3.0_ab12cd`)
+- `Version` (`<app-version>_<6-char hex hash>`, for example `0.3.1_ab12cd`)
 - `Connection`
 - `Client ID`
 - `Runtime`

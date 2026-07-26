@@ -164,7 +164,7 @@ QR viewer page が blank の場合：
 
 Key fields：
 
-- `Version`（`<app-version>_<6桁hex hash>`、例：`0.3.0_ab12cd`）
+- `Version`（`<app-version>_<6桁hex hash>`、例：`0.3.1_ab12cd`）
 - `Connection`
 - `Client ID`
 - `Runtime`
