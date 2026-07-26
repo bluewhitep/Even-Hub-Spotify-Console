@@ -30,7 +30,7 @@ Even Hub Spotify Console uses the phone WebView for Spotify sign-in, playback, a
 - [Local simulator](./simulator.md)
 - [Real-device quick guide](./device.md)
 - [Detailed self-hosting guide](./self-hosting.md)
-- [Tailscale HTTPS](./tailscale.md)
+- [Tailscale HTTPS (recommended)](./tailscale.md)
 - [Docker deployment](./docker.md)
 - [Raspberry Pi deployment](./raspberry-pi.md)
 
@@ -43,7 +43,7 @@ Even Hub Spotify Console uses the phone WebView for Spotify sign-in, playback, a
 - [Privacy and local data](./privacy.md)
 - Enter only the Spotify `Client ID`; never store or commit the `Client Secret`.
 - `simulator.config.json`, `self-host.config.json`, `.self-host/`, and `qr/` are local runtime data and must not be committed.
-- Run self-host only inside a trusted private tailnet. Do not expose it through Tailscale Funnel or a public reverse proxy.
+- Tailscale Serve on a trusted private tailnet is recommended because it provides HTTPS, private access, and user identity together. Another HTTPS solution must enforce reliable access control and use a trusted reverse proxy to set `Tailscale-User-Login` to an identity allowed by `allowedTailscaleUsers`; a TLS certificate alone is not sufficient. Do not expose the service through Tailscale Funnel or a public reverse proxy.
 - Clear the WebView session before authorizing again after changing the Client ID or service origin.
 - [Security reporting](../../SECURITY.md) and [contribution guide](../../CONTRIBUTING.md)
 

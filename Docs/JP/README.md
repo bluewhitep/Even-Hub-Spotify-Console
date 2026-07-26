@@ -30,7 +30,7 @@ Even Hub Spotify Console は、スマートフォンの WebView で Spotify の�
 - [ローカルシミュレーター](./simulator.md)
 - [実機クイックガイド](./device.md)
 - [Self-host 詳細ガイド](./self-hosting.md)
-- [Tailscale HTTPS](./tailscale.md)
+- [Tailscale HTTPS（推奨）](./tailscale.md)
 - [Docker デプロイ](./docker.md)
 - [Raspberry Pi デプロイ](./raspberry-pi.md)
 
@@ -43,7 +43,7 @@ Even Hub Spotify Console は、スマートフォンの WebView で Spotify の�
 - [プライバシーとローカルデータ](./privacy.md)
 - Spotify の `Client ID` だけを入力し、`Client Secret` は保存・コミットしないでください。
 - `simulator.config.json`、`self-host.config.json`、`.self-host/`、`qr/` はローカル実行データであり、コミットしないでください。
-- Self-host は信頼できるプライベート tailnet 内だけで実行し、Tailscale Funnel や公開リバースプロキシで公開しないでください。
+- HTTPS、プライベートアクセス、ユーザー識別をまとめて提供できるため、信頼できるプライベート tailnet で Tailscale Serve を使う方法を推奨します。別の HTTPS 方式を使う場合は、確実なアクセス制御を行い、信頼できるリバースプロキシから `allowedTailscaleUsers` に一致する `Tailscale-User-Login` を設定する必要があります。TLS 証明書だけでは不十分です。Tailscale Funnel や公開リバースプロキシで外部公開しないでください。
 - Client ID または service origin を変更した場合は、再認証の前に WebView のセッションを消去してください。
 - [セキュリティ報告](../../SECURITY.md)と[コントリビューションガイド](../../CONTRIBUTING.md)
 
