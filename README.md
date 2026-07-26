@@ -4,9 +4,9 @@
 
 [中文](./Docs/ZH/README.md) | [English](./Docs/EN/README.md) | [日本語](./Docs/JP/README.md)
 
-在 Even Hub 手机 WebView 中连接 Spotify，在眼镜端查看播放状态并控制播放。项目提供本机模拟器调试，以及通过 Tailscale HTTPS 部署到真实设备的 self-host 模式。
+在 Even Hub 手机 WebView 中连接 Spotify，在眼镜端查看播放状态并控制播放。项目提供本机模拟器调试，以及通过 HTTPS 部署到真实设备的 self-host 模式；推荐使用 Tailscale 提供 HTTPS 和访问身份。
 
-> 本项目仍处于发布前阶段。Self-host 服务只应运行在你信任的私有 tailnet 内，不要通过 Tailscale Funnel 或公共反向代理暴露到互联网。
+> 本项目仍处于发布前阶段。推荐在你信任的私有 tailnet 内使用 Tailscale Serve，不要通过 Tailscale Funnel 暴露到互联网。其他 HTTPS 方案也可以使用，但必须同时提供可靠的访问控制，并由受信任的反向代理传入与 `allowedTailscaleUsers` 白名单匹配的 `Tailscale-User-Login` 身份；只有 HTTPS 证书而没有身份校验并不足够。
 
 本项目不是 Spotify 或 Even Realities 的官方产品，也不代表任何认可或合作关系。Spotify 将控制后台 Spotify 播放也归入 Streaming SDA；请仅用于私人、个人和非商业用途，并遵守 [Spotify Developer Terms](https://developer.spotify.com/terms) 与 [Developer Policy](https://developer.spotify.com/policy)。
 
@@ -49,11 +49,13 @@
 
 ## 实机使用
 
-真实手机和眼镜需要一个稳定的 Tailscale HTTPS 地址，Spotify callback 为：
+真实手机和眼镜需要一个稳定的 HTTPS 地址。本项目推荐 Tailscale，因为 Tailscale Serve 能同时提供受信任的 HTTPS、私有网络访问和用户身份。使用 Tailscale 时，Spotify callback 为：
 
 ```text
 https://<device>.<tailnet>.ts.net/api/auth/callback
 ```
+
+也可以使用其他能够提供 HTTPS 的私有部署方案，但反向代理必须完成用户认证，并安全地传入与服务端白名单匹配的 `Tailscale-User-Login` 请求头。不要让客户端自行设置或覆盖这个请求头，也不要把服务端口直接暴露到局域网或互联网；普通 HTTPS 转发本身不能替代当前服务端的身份校验。
 
 从先决条件、Dashboard 配置、`.ehpk` 打包到手机本地安装的完整流程见[本地部署指南](./Docs/ZH/deployment.md)。QR 只用于开发阶段加载未打包页面，不是正式安装方式。
 

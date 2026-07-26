@@ -30,7 +30,7 @@ Even Hub Spotify Console 让手机 WebView 负责 Spotify 登录、播放控制�
 - [本机模拟器指南](./simulator.md)
 - [实机快速指南](./device.md)
 - [Self-host 详细说明](./self-hosting.md)
-- [Tailscale HTTPS](./tailscale.md)
+- [Tailscale HTTPS（推荐）](./tailscale.md)
 - [Docker 部署](./docker.md)
 - [Raspberry Pi 部署](./raspberry-pi.md)
 
@@ -43,7 +43,7 @@ Even Hub Spotify Console 让手机 WebView 负责 Spotify 登录、播放控制�
 - [隐私与本地数据](./privacy.md)
 - 配置中只填写 Spotify `Client ID`，不要保存或提交 `Client Secret`。
 - `simulator.config.json`、`self-host.config.json`、`.self-host/` 和 `qr/` 都是本地运行数据，不应提交。
-- Self-host 服务只应放在受信任的私有 tailnet 中，不要使用 Tailscale Funnel 或公共反向代理对外开放。
+- 推荐在受信任的私有 tailnet 中使用 Tailscale Serve，因为它同时提供 HTTPS、私有访问和用户身份。其他 HTTPS 方案必须提供可靠的访问控制，并由受信任的反向代理传入与 `allowedTailscaleUsers` 匹配的 `Tailscale-User-Login`；只有 HTTPS 证书并不足够。不要使用 Tailscale Funnel 或公共反向代理对外开放。
 - 更换 Client ID 或服务域名后，先在 WebView 中清除会话，再重新授权。
 - [安全问题报告](../../SECURITY.md)与[贡献指南](../../CONTRIBUTING.md)
 
