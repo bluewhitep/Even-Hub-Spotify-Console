@@ -38,7 +38,7 @@ Remote 模式需要 Spotify 中存在可用的播放设备。若按钮无反应�
 - “Liked Songs”固定保留，并以随机播放方式启动。
 - 设置页最多可再选择 8 个 Spotify 播放列表。
 - 手机端选择播放列表会立即开始播放；眼镜端也会同步同一列表。
-- `0.3.1` 已包含所需的 library scope，并按 Spotify 2026 规则使用通用 `PUT` / `DELETE /me/library` 处理收藏状态。新建 Development Mode app 若返回 `403`，请确认 app owner 为 Premium、当前用户已加入 Dashboard allowlist，并在清除旧会话后重新授权；详见[故障排查](./troubleshooting.md)和 Spotify 的 [2026 migration guide](https://developer.spotify.com/documentation/web-api/tutorials/february-2026-migration-guide)。
+- `0.3.1+` 已包含所需的 library scope，并按 Spotify 2026 规则使用通用 `PUT` / `DELETE /me/library` 处理收藏状态。新建 Development Mode app 若返回 `403`，请确认 app owner 为 Premium、当前用户已加入 Dashboard allowlist，并在清除旧会话后重新授权；详见[故障排查](./troubleshooting.md)和 Spotify 的 [2026 migration guide](https://developer.spotify.com/documentation/web-api/tutorials/february-2026-migration-guide)。
 
 ## 设置
 

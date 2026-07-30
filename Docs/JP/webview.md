@@ -38,7 +38,7 @@ Remote モードには利用可能な Spotify 再生デバイスが必要です�
 - **Liked Songs** は常に表示され、シャッフルで再生を開始します。
 - 設定から Spotify プレイリストを最大 8 件追加できます。
 - スマートフォンで選ぶとすぐ再生が始まり、グラスにも同期されます。
-- `0.3.1` は必要な library scope を含み、Spotify 2026 ルールに従って保存状態の変更に汎用 `PUT` / `DELETE /me/library` endpoint を使用します。新しい Development Mode app で `403` が返る場合は、app owner が Premium であること、現在の user が Dashboard allowlist に追加されていること、古い session を消去して再認証したことを確認してください。詳しくは[トラブルシューティング](./troubleshooting.md)と Spotify の [February 2026 migration guide](https://developer.spotify.com/documentation/web-api/tutorials/february-2026-migration-guide)を参照してください。
+- `0.3.1+` は必要な library scope を含み、Spotify 2026 ルールに従って保存状態の変更に汎用 `PUT` / `DELETE /me/library` endpoint を使用します。新しい Development Mode app で `403` が返る場合は、app owner が Premium であること、現在の user が Dashboard allowlist に追加されていること、古い session を消去して再認証したことを確認してください。詳しくは[トラブルシューティング](./troubleshooting.md)と Spotify の [February 2026 migration guide](https://developer.spotify.com/documentation/web-api/tutorials/february-2026-migration-guide)を参照してください。
 
 ## 設定
 

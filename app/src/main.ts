@@ -181,7 +181,7 @@ const POLL_IDLE_MS = 10000;
 const POLL_ERROR_MS = 5000;
 const DEVICE_PAGE_POLL_MS = 2000;
 const DEVICE_TRANSFER_PENDING_MS = 2500;
-const NOW_PLAYING_CONTROL_COUNT = 7;
+const NOW_PLAYING_CONTROL_COUNT = 8;
 const NOW_PLAYING_DEFAULT_FOCUS_INDEX = 3;
 const LANGUAGE_KEY = "phone_lang_v1";
 const PHONE_PANEL_KEY = "phone_panel_v1";
@@ -555,6 +555,7 @@ const PHONE_TEXT: Record<
     iconShuffleOn: string;
     iconShuffleOff: string;
     iconRepeatOff: string;
+    iconHide: string;
     iconDevices: string;
     iconPlaylists: string;
   }
@@ -698,15 +699,16 @@ const PHONE_TEXT: Record<
     btnShuffle: "随机播放",
     btnRepeat: "循环模式",
     operationGuideLabel: "眼镜操作说明",
-    operationClick: "单击：确认",
-    operationSwipe: "左右滑动：选择",
-    operationDoubleClick: "双击：隐藏和显示",
+    operationClick: "单击：确认；隐藏时首次单击仅恢复显示",
+    operationSwipe: "左右滚动：选择；隐藏时首次滚动仅恢复显示",
+    operationDoubleClick: "双击：打开系统退出确认",
     iconGuideLabel: "眼镜图标说明",
     iconRepeatContext: "RA：歌单循环",
     iconRepeatTrack: "R1：单曲循环",
     iconShuffleOn: "S+：随机播放",
     iconShuffleOff: "S：不随机播放",
     iconRepeatOff: "->：不循环",
+    iconHide: "H：隐藏 GlassesView",
     iconDevices: "DV：选择播放设备",
     iconPlaylists: "PL：选择已登陆的播放列表",
   },
@@ -849,15 +851,16 @@ const PHONE_TEXT: Record<
     btnShuffle: "Shuffle",
     btnRepeat: "Repeat mode",
     operationGuideLabel: "Glasses controls",
-    operationClick: "Click: confirm",
-    operationSwipe: "Swipe left/right: choose",
-    operationDoubleClick: "Double-click: hide/show",
+    operationClick: "Click: confirm; when hidden, the first click only restores the display",
+    operationSwipe: "Scroll left/right: choose; when hidden, the first scroll only restores the display",
+    operationDoubleClick: "Double-click: open the system exit confirmation",
     iconGuideLabel: "Glasses icon guide",
     iconRepeatContext: "RA: playlist repeat",
     iconRepeatTrack: "R1: single-track repeat",
     iconShuffleOn: "S+: shuffle on",
     iconShuffleOff: "S: shuffle off",
     iconRepeatOff: "->: repeat off",
+    iconHide: "H: hide GlassesView",
     iconDevices: "DV: choose playback device",
     iconPlaylists: "PL: choose logged-in playlist",
   },
@@ -1000,15 +1003,16 @@ const PHONE_TEXT: Record<
     btnShuffle: "シャッフル",
     btnRepeat: "リピートモード",
     operationGuideLabel: "メガネ操作説明",
-    operationClick: "クリック：確定",
-    operationSwipe: "左右スワイプ：選択",
-    operationDoubleClick: "ダブルクリック：非表示/表示",
+    operationClick: "クリック：確定（非表示中の最初のクリックは表示復元のみ）",
+    operationSwipe: "左右スクロール：選択（非表示中の最初のスクロールは表示復元のみ）",
+    operationDoubleClick: "ダブルクリック：システムの終了確認を開く",
     iconGuideLabel: "メガネアイコン説明",
     iconRepeatContext: "RA：プレイリストリピート",
     iconRepeatTrack: "R1：1曲リピート",
     iconShuffleOn: "S+：シャッフルオン",
     iconShuffleOff: "S：シャッフルオフ",
     iconRepeatOff: "->：リピートなし",
+    iconHide: "H：GlassesView を非表示",
     iconDevices: "DV：再生デバイス選択",
     iconPlaylists: "PL：ログイン済みプレイリスト選択",
   },
@@ -5648,6 +5652,7 @@ function buildPhoneUi(): void {
                 <span>${escapeHtml(text.iconShuffleOn)}</span>
               </div>
               <div style="display:flex;flex-wrap:wrap;gap:6px 18px;">
+                <span>${escapeHtml(text.iconHide)}</span>
                 <span>${escapeHtml(text.iconDevices)}</span>
                 <span>${escapeHtml(text.iconPlaylists)}</span>
               </div>
@@ -6854,6 +6859,11 @@ async function runFocusedControl(): Promise<void> {
     return;
   }
 
+  if (state.focusIndex === 6) {
+    await setGlassesUiVisible(false);
+    return;
+  }
+
   if (controlInFlight || Date.now() < controlLockedUntil) {
     markBusyHint();
     await renderGlassesPage(false);
@@ -6988,12 +6998,27 @@ async function handleEvenHubEvent(event: EvenHubEvent): Promise<void> {
     return;
   }
 
-  if (!state.uiVisible && eventType !== OsEventTypeList.DOUBLE_CLICK_EVENT) {
+  if (eventType === OsEventTypeList.DOUBLE_CLICK_EVENT) {
+    if (!bridge) {
+      console.warn("Unable to open the system exit confirmation because the Even bridge is unavailable.");
+      return;
+    }
+    try {
+      await bridge.shutDownPageContainer(1);
+    } catch (error) {
+      console.warn("Failed to open the system exit confirmation", error);
+    }
     return;
   }
 
-  if (eventType === OsEventTypeList.DOUBLE_CLICK_EVENT) {
-    await setGlassesUiVisible(!state.uiVisible);
+  if (!state.uiVisible) {
+    if (
+      eventType === OsEventTypeList.CLICK_EVENT ||
+      eventType === OsEventTypeList.SCROLL_TOP_EVENT ||
+      eventType === OsEventTypeList.SCROLL_BOTTOM_EVENT
+    ) {
+      await setGlassesUiVisible(true);
+    }
     return;
   }
 

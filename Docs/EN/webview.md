@@ -38,7 +38,7 @@ Remote mode needs an available Spotify playback device. If controls do nothing, 
 - **Liked Songs** is always present and starts in shuffle mode.
 - Settings can add up to eight more Spotify playlists.
 - Selecting a playlist on the phone starts it immediately and synchronizes the glasses.
-- `0.3.1` includes the required library scopes and uses the generic `PUT` / `DELETE /me/library` endpoint for saved-state changes under Spotify's 2026 rules. If a newly created Development Mode app returns `403`, confirm that the app owner has Premium, the current user is on the Dashboard allowlist, and authorization was repeated after clearing the old session. See [troubleshooting](./troubleshooting.md) and Spotify's [February 2026 migration guide](https://developer.spotify.com/documentation/web-api/tutorials/february-2026-migration-guide).
+- `0.3.1+` includes the required library scopes and uses the generic `PUT` / `DELETE /me/library` endpoint for saved-state changes under Spotify's 2026 rules. If a newly created Development Mode app returns `403`, confirm that the app owner has Premium, the current user is on the Dashboard allowlist, and authorization was repeated after clearing the old session. See [troubleshooting](./troubleshooting.md) and Spotify's [February 2026 migration guide](https://developer.spotify.com/documentation/web-api/tutorials/february-2026-migration-guide).
 
 ## Settings
 
