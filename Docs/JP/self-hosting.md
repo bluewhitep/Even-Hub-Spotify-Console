@@ -222,37 +222,53 @@ EvenHub CLI で metadata template を生成：
 evenhub init
 ```
 
-この project で使用する packaging field の例：
+次の内容は現在の root `app.json` からコピーしたものです。
 
 ```json
 {
-  "package_id": "com.example.g2demo",
+  "package_id": "com.bluewhites.evenhubspotifyconsole",
   "edition": "202601",
-  "name": "G2 Demo",
-  "version": "0.3.1",
+  "name": "Spotify Console",
+  "version": "0.3.2",
   "min_app_version": "0.1.0",
-  "tagline": "A short description of the app",
-  "description": "A relatively long description of the app",
-  "author": "Your Name",
+  "min_sdk_version": "0.0.9",
+  "tagline": "Control Spotify console for Even Hub and glasses.",
+  "description": "Self-hosted Even Hub Spotify console for playback, now playing, playlists, and device control on phone WebView + glasses WebView.",
+  "author": "BlueWhite",
   "entrypoint": "index.html",
-  "permissions": {
-    "network": ["evenhub.evenrealities.com"],
-    "fs": ["./assets"]
-  }
+  "permissions": [
+    {
+      "name": "network",
+      "desc": "Access Spotify and related services for login, playback control, metadata, and album images.",
+      "whitelist": [
+        "https://evenhub.evenrealities.com",
+        "https://accounts.spotify.com",
+        "https://api.spotify.com",
+        "https://open.spotify.com",
+        "https://i.scdn.co",
+        "https://*.ts.net"
+      ]
+    }
+  ],
+  "supported_languages": [
+    "zh",
+    "en",
+    "ja"
+  ]
 }
 ```
 
-packing 前に入力するもの：
+packing 前に確認するもの：
 
-- `package_id`：unique app ID（reverse-domain style。他 app の ID を再利用しない）
-- `edition`：EvenHub workflow が別の edition code を必要としない限り CLI template のまま
-- `name`：app display name
-- `version`：app version string
-- `min_app_version`：minimum Even app version
-- `tagline` / `description`：short and long app description
-- `author`：author info
+- `package_id`、`edition`、`name`、`author`：Portal の app identity と一致させる
+- `version`：current patch version。root manifest とこの例はいずれも `0.3.2`
+- `min_app_version` / `min_sdk_version`：minimum Even app / SDK version。SDK dependency は `0.0.9` のまま
+- `tagline` / `description`：Portal で使う short / long description
 - `entrypoint`：built output の startup HTML file（この project では `index.html`）
-- `permissions`：必要な scopes（`network`、`fs` など）のみ残す
+- `permissions`：Spotify、Even Hub、album image、private `*.ts.net` self-host に必要な network allowlist のみ残す
+- `supported_languages`：phone WebView の中国語、英語、日本語 locale と一致させる
+
+release field を変更するときは root `app.json` を先に更新し、その後に 3 言語の完全な例を同期してください。
 
 Pack command：
 

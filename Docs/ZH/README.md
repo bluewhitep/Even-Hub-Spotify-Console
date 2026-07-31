@@ -1,6 +1,6 @@
 # Even Hub Spotify Console 中文文档
 
-[![App Version](https://img.shields.io/badge/app-0.3.1-blue)](../../app.json) [![Even Hub SDK](https://img.shields.io/badge/Even%20Hub%20SDK-0.0.9-7c3aed)](../../app/package.json) [![Docs](https://img.shields.io/badge/docs-ZH%20%7C%20EN%20%7C%20JP-0f766e)](./README.md) [![Simulator](https://img.shields.io/badge/mode-simulator-2563eb)](./simulator.md) [![Self Host](https://img.shields.io/badge/mode-self--host-16a34a)](./deployment.md) [![License: MPL-2.0](https://img.shields.io/badge/license-MPL--2.0-orange)](../../LICENSE)
+[![App Version](https://img.shields.io/badge/app-0.3.2-blue)](../../app.json) [![Even Hub SDK](https://img.shields.io/badge/Even%20Hub%20SDK-0.0.9-7c3aed)](../../app/package.json) [![Docs](https://img.shields.io/badge/docs-ZH%20%7C%20EN%20%7C%20JP-0f766e)](./README.md) [![Simulator](https://img.shields.io/badge/mode-simulator-2563eb)](./simulator.md) [![Self Host](https://img.shields.io/badge/mode-self--host-16a34a)](./deployment.md) [![License: MPL-2.0](https://img.shields.io/badge/license-MPL--2.0-orange)](../../LICENSE)
 
 [中文](./README.md) | [English](../EN/README.md) | [日本語](../JP/README.md) | [项目首页](../../README.md)
 
@@ -22,7 +22,7 @@ Even Hub Spotify Console 让手机 WebView 负责 Spotify 登录、播放控制�
 | [Spotify Developer Dashboard 设置](./spotify-dashboard.md) | 如何创建 app、填写 Redirect URI、复制 Client ID 和添加测试用户 |
 | [本地部署](./deployment.md) | 先决条件、安装、配置、启动、验证、更新、停止与卸载 |
 | [手机 WebView](./webview.md) | 登录、连接、播放模式、播放列表、设置保存与会话恢复 |
-| [眼镜 GlassesView](./glassesview.md) | 手势、控制项、播放列表、设备切换、自动隐藏与恢复 |
+| [眼镜 GlassesView](./glassesview.md) | `H` 隐藏、单击/滚动恢复、双击系统退出确认、播放列表与设备切换 |
 
 ## 运行与配置
 

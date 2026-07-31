@@ -125,9 +125,9 @@ Runtime config 和 login state 不会在所有浏览器容器中通用共享。
 
 在上游 SDK 修复或提供关闭 shadow timers 的选项前，不要用 `0.0.10+` 打实机发布包。
 
-## 隐藏的 Glasses UI 不会自动返回
+## 隐藏的 GlassesView 如何恢复
 
-如果双击隐藏 glasses UI，它会保持隐藏，直到你通过交互再次显示。
+使用 `H` 手动隐藏或触发 `Auto Hide` 后，GlassesView 会保持隐藏，直到收到恢复交互。
 
 当前行为：
 
@@ -136,8 +136,10 @@ Runtime config 和 login state 不会在所有浏览器容器中通用共享。
 
 恢复路径：
 
-1. 在 glasses 上双击以再次显示
-2. 使用手机 WebView 顶部刷新按钮
+1. 在 glasses 上单击或向任一方向滚动一次；第一次交互只恢复显示，不执行播放、切歌、选择列表、转移设备或移动焦点
+2. 若交互恢复失败，使用手机 WebView 顶部刷新按钮作为故障恢复路径；手机强制刷新不会打开系统退出确认
+
+双击不再隐藏或恢复 GlassesView；它用于打开 Even 系统退出确认。
 
 ## 开发 QR Generation / Viewer 问题
 
@@ -164,7 +166,7 @@ Runtime config 和 login state 不会在所有浏览器容器中通用共享。
 
 关键字段：
 
-- `Version`（`<app-version>_<6位hex hash>`，例如 `0.3.1_ab12cd`）
+- `Version`（`<app-version>_<6位hex hash>`，例如 `0.3.2_ab12cd`）
 - `Connection`
 - `Client ID`
 - `Runtime`

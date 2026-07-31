@@ -125,9 +125,9 @@ real-device の phone page がしばらく放置後に視覚的に blank にな�
 
 upstream SDK がこの挙動を修正するか、shadow timers を無効化する option を提供するまでは、`0.0.10+` で real-device release package を build しないでください。
 
-## Hidden Glasses UI Does Not Return Automatically
+## 非表示の GlassesView を復元する
 
-double-click で glasses UI を hide すると、もう一度 interaction で show するまで hidden のままです。
+`H` による手動非表示または `Auto Hide` の後、GlassesView は復元操作を受けるまで非表示のままです。
 
 現在の behavior：
 
@@ -136,8 +136,10 @@ double-click で glasses UI を hide すると、もう一度 interaction で sh
 
 Recovery paths：
 
-1. glasses で double-click して再表示する
-2. phone WebView の top refresh button を使う
+1. glasses でクリックするか、左右いずれかに 1 回スクロールする。最初の操作は表示を復元するだけで、再生、曲送り、リスト選択、デバイス切替、フォーカス移動を行わない
+2. ジェスチャーで復元できない場合、phone WebView の top refresh button を故障復旧として使う。phone の強制更新ではシステム終了確認を開かない
+
+ダブルクリックは GlassesView の非表示や復元には使わず、Even システムの終了確認を開きます。
 
 ## Development QR Generation / Viewer Issues
 
@@ -164,7 +166,7 @@ QR viewer page が blank の場合：
 
 Key fields：
 
-- `Version`（`<app-version>_<6桁hex hash>`、例：`0.3.1_ab12cd`）
+- `Version`（`<app-version>_<6桁hex hash>`、例：`0.3.2_ab12cd`）
 - `Connection`
 - `Client ID`
 - `Runtime`

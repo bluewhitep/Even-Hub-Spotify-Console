@@ -125,9 +125,9 @@ Known risk:
 
 Do not build a real-device release package with `0.0.10+` until the upstream SDK fixes this behavior or provides an option to disable shadow timers.
 
-## Hidden Glasses UI Does Not Return Automatically
+## Recovering a Hidden GlassesView
 
-If you double-click to hide glasses UI, it will stay hidden until you show it again by interaction.
+After manual `H` hide or `Auto Hide`, GlassesView stays hidden until it receives a recovery interaction.
 
 Current behavior:
 
@@ -136,8 +136,10 @@ Current behavior:
 
 Recovery paths:
 
-1. Double-click on glasses to show again
-2. Use the top refresh button in phone WebView
+1. Click or scroll once in either direction on the glasses. The first interaction only restores the display; it does not play, skip, select a list item, transfer playback, or move focus
+2. If gesture recovery fails, use the top refresh button in the phone WebView as a fault-recovery path. Phone forced refresh does not open the system exit confirmation
+
+Double-click no longer hides or restores GlassesView; it opens the Even system exit confirmation.
 
 ## Development QR Generation / Viewer Issues
 
@@ -164,7 +166,7 @@ If QR viewer page is blank:
 
 Key fields:
 
-- `Version` (`<app-version>_<6-char hex hash>`, for example `0.3.1_ab12cd`)
+- `Version` (`<app-version>_<6-char hex hash>`, for example `0.3.2_ab12cd`)
 - `Connection`
 - `Client ID`
 - `Runtime`

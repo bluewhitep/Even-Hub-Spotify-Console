@@ -617,12 +617,14 @@ function getDecoratedControlLabels(
 ): string[] {
   const transportLabels = getControlGlyphLabels(variant, isPlaying);
   const playlistLabel = "PL";
+  const hideLabel = "H";
   const deviceLabel = "DV";
   return [
     playlistLabel,
     shuffleEnabled ? "S+" : "S",
     ...transportLabels,
     repeatMode === "track" ? "R1" : repeatMode === "context" ? "RA" : "->",
+    hideLabel,
     deviceLabel,
   ];
 }

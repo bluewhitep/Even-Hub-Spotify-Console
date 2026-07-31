@@ -224,37 +224,53 @@ npm run pack:ehpk
 evenhub init
 ```
 
-本项目使用的打包字段示例：
+下面内容复制自当前根目录 `app.json`：
 
 ```json
 {
-  "package_id": "com.example.g2demo",
+  "package_id": "com.bluewhites.evenhubspotifyconsole",
   "edition": "202601",
-  "name": "G2 Demo",
-  "version": "0.3.1",
+  "name": "Spotify Console",
+  "version": "0.3.2",
   "min_app_version": "0.1.0",
-  "tagline": "A short description of the app",
-  "description": "A relatively long description of the app",
-  "author": "Your Name",
+  "min_sdk_version": "0.0.9",
+  "tagline": "Control Spotify console for Even Hub and glasses.",
+  "description": "Self-hosted Even Hub Spotify console for playback, now playing, playlists, and device control on phone WebView + glasses WebView.",
+  "author": "BlueWhite",
   "entrypoint": "index.html",
-  "permissions": {
-    "network": ["evenhub.evenrealities.com"],
-    "fs": ["./assets"]
-  }
+  "permissions": [
+    {
+      "name": "network",
+      "desc": "Access Spotify and related services for login, playback control, metadata, and album images.",
+      "whitelist": [
+        "https://evenhub.evenrealities.com",
+        "https://accounts.spotify.com",
+        "https://api.spotify.com",
+        "https://open.spotify.com",
+        "https://i.scdn.co",
+        "https://*.ts.net"
+      ]
+    }
+  ],
+  "supported_languages": [
+    "zh",
+    "en",
+    "ja"
+  ]
 }
 ```
 
-打包前需要填写：
+打包前需要核对：
 
-- `package_id`：唯一 app ID（reverse-domain 风格，不要复用其他 app 的 ID）
-- `edition`：除非你的 EvenHub workflow 需要其他 edition code，否则保持 CLI template
-- `name`：app 显示名
-- `version`：app version string
-- `min_app_version`：最低 Even app version
-- `tagline` / `description`：短描述和长描述
-- `author`：作者信息
+- `package_id`、`edition`、`name`、`author`：必须与 Portal 中的应用身份一致
+- `version`：当前补丁版本；本文示例与根 manifest 均为 `0.3.2`
+- `min_app_version` / `min_sdk_version`：最低 Even app 与 SDK 版本；SDK 依赖仍固定为 `0.0.9`
+- `tagline` / `description`：Portal 中使用的短描述和长描述
 - `entrypoint`：构建输出中的启动 HTML 文件（本项目是 `index.html`）
-- `permissions`：只保留需要的 scope（`network`、`fs` 等）
+- `permissions`：只保留 Spotify、Even Hub、专辑图和私有 `*.ts.net` self-host 所需的网络白名单
+- `supported_languages`：与手机 WebView 支持的中文、英文、日文一致
+
+修改发布字段时应先更新根目录 `app.json`，再把完整示例同步到三语文档。
 
 打包命令：
 

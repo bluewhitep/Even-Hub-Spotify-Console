@@ -222,37 +222,53 @@ Use EvenHub CLI to generate metadata template:
 evenhub init
 ```
 
-Packaging field example used by this project:
+The following block is copied from the current root `app.json`:
 
 ```json
 {
-  "package_id": "com.example.g2demo",
+  "package_id": "com.bluewhites.evenhubspotifyconsole",
   "edition": "202601",
-  "name": "G2 Demo",
-  "version": "0.3.1",
+  "name": "Spotify Console",
+  "version": "0.3.2",
   "min_app_version": "0.1.0",
-  "tagline": "A short description of the app",
-  "description": "A relatively long description of the app",
-  "author": "Your Name",
+  "min_sdk_version": "0.0.9",
+  "tagline": "Control Spotify console for Even Hub and glasses.",
+  "description": "Self-hosted Even Hub Spotify console for playback, now playing, playlists, and device control on phone WebView + glasses WebView.",
+  "author": "BlueWhite",
   "entrypoint": "index.html",
-  "permissions": {
-    "network": ["evenhub.evenrealities.com"],
-    "fs": ["./assets"]
-  }
+  "permissions": [
+    {
+      "name": "network",
+      "desc": "Access Spotify and related services for login, playback control, metadata, and album images.",
+      "whitelist": [
+        "https://evenhub.evenrealities.com",
+        "https://accounts.spotify.com",
+        "https://api.spotify.com",
+        "https://open.spotify.com",
+        "https://i.scdn.co",
+        "https://*.ts.net"
+      ]
+    }
+  ],
+  "supported_languages": [
+    "zh",
+    "en",
+    "ja"
+  ]
 }
 ```
 
-What to fill before packing:
+What to verify before packing:
 
-- `package_id`: unique app ID (reverse-domain style, do not reuse another app's ID)
-- `edition`: keep CLI template unless your EvenHub workflow requires another edition code
-- `name`: app display name
-- `version`: app version string
-- `min_app_version`: minimum Even app version
-- `tagline` / `description`: short and long app description
-- `author`: author info
+- `package_id`, `edition`, `name`, and `author`: must match the app identity in the Portal
+- `version`: current patch version; the root manifest and this example both use `0.3.2`
+- `min_app_version` / `min_sdk_version`: minimum Even app and SDK versions; the SDK dependency remains pinned to `0.0.9`
+- `tagline` / `description`: short and long descriptions used by the Portal
 - `entrypoint`: startup HTML file in your built output (`index.html` in this project)
-- `permissions`: keep only required scopes (`network`, `fs`, etc.)
+- `permissions`: retain only the network allowlist required by Spotify, Even Hub, album images, and private `*.ts.net` self-hosting
+- `supported_languages`: must match the Chinese, English, and Japanese phone WebView locales
+
+When release fields change, update the root `app.json` first and then synchronize the complete example across all three language guides.
 
 Pack command:
 
